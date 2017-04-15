@@ -15,7 +15,7 @@ class ThemeTest extends TestCase
 
     public function testDefaultTheme()
     {
-        $this->assertEquals('Default theme', $this->theme->default);
+        $this->assertEquals('Default', $this->theme->get());
     }
 
     public function themesForTestWithEachFalse()
@@ -66,7 +66,7 @@ class ThemeTest extends TestCase
                     'Her',
                     'His',
                     'Bad',
-                    'Beautiful'
+                    'Beautiful',
                 ],
             ],
         ];
@@ -138,5 +138,12 @@ class ThemeTest extends TestCase
         $this->assertNotEmpty($result);
         $this->assertContains('Her', $result);
         $this->assertContains('Bad', $result);
+    }
+
+    public function testSetNotDefaultTheme()
+    {
+        $this->assertFalse($this->theme->set('Name theme'));
+        $this->assertFalse($this->theme->set('Name'));
+        $this->assertTrue($this->theme->set('Good'));
     }
 }

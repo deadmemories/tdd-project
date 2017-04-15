@@ -6,10 +6,17 @@ use Game\Exceptions\Theme\IncorrectLogicType;
 
 class Theme
 {
-    public $default = 'Default theme';
+    // Theme for current game
+    protected $currentTheme = 'Default';
 
-    public $themes = ['Good', 'His', 'Beautiful', 'My'];
+    /**
+     * @var array
+     *
+     * All themes
+     */
+    public $themes = ['Default', 'Good', 'His', 'Beautiful', 'My'];
 
+    // Logic for has method
     public const RETURN_BOOL_ONLY = 0;
     public const RETURN_WITH_EACH = 1;
     public const RETURN_WITH_TRUE = 2;
@@ -19,7 +26,7 @@ class Theme
     {
         if (is_string($themes)) {
             if (! $this->logicIsCorrect($logic, 0)) {
-                throw new \IncorrectLogicType('For string you can choose only RETURN_BOOL_ONLY');
+                throw new IncorrectLogicType('For string you can choose only RETURN_BOOL_ONLY');
             }
 
             return $this->hasThemeString($themes);
@@ -31,7 +38,30 @@ class Theme
             return $this->hasThemesArray($themes, $logic);
         }
 
-        throw new \IncorrectLogicType('Incorrect type. Themes can be string or array only');
+        throw new IncorrectLogicType('Incorrect type. Themes can be string or array only');
+    }
+
+    /**
+     * @param string $theme
+     * @return bool
+     */
+    public function set(string $theme): bool
+    {
+        if ($this->has($theme) && $this->currentTheme != $theme) {
+            $this->currentTheme = $theme;
+
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * @return string
+     */
+    public function get(): string
+    {
+        return $this->currentTheme;
     }
 
     /**
