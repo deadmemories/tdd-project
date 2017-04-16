@@ -4,12 +4,12 @@ namespace Game\Units\AllUnits;
 
 use Game\Contracts\Units\UnitInterface;
 
-final class FreeUnit implements UnitInterface
+class CommonUnit implements UnitInterface
 {
-    public $name = 'Free';
+    public $name = 'Common';
 
     protected $charterers = [
-        'attack' => 5,
+        'attack' => 3,
         'armor' => 1,
     ];
 

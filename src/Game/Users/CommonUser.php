@@ -4,17 +4,17 @@ namespace Game\Users;
 
 final class CommonUser
 {
-    public const NAME = 'CommonUser';
+    public $name = 'CommonUser';
 
-    public const RANG = 2;
+    public $rang = 2;
 
-    public const GAMES = 50;
+    public $games = 50;
 
-    public const WINNERS = 20;
+    public $winners = 20;
 
-    public const LOSSES = 20;
+    public $losses  = 20;
 
-    public const DRAWS = 100;
+    public $draws = 100;
 
     /**
      * 0 - common user
@@ -22,5 +22,5 @@ final class CommonUser
      * 2 - Vip user
      * 3 - admin
      */
-    public const STATUS = 0;
+    public $status = 0;
 }
